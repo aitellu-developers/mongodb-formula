@@ -8,10 +8,10 @@ mongodb_package:
 {% if mdb.use_ppa or mdb.use_repo %}
   {% set os = salt['grains.get']('os')|lower %}
   {% set code = salt['grains.get']('oscodename') %}
-  {% set version = salt['pillar.get']('version') %}
+  {% set version = salt['pillar.get']('mongodb:version') %}
   pkgrepo.managed:
     - humanname: MongoDB.org Repo
-    - name: deb http://repo.mongodb.org/apt/{{ os }} {{ code }}/mongodb-org/{{ version }} multiverse
+    - name: deb http://repo.mongodb.org/apt/{{ os }} {{ code }}/{{mdb.mongodb_package}}/{{ version }} multiverse
     - file: /etc/apt/sources.list.d/mongodb.list
     - keyid: 7F0CEB10
     - keyserver: keyserver.ubuntu.com
