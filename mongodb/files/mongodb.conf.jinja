@@ -6,7 +6,7 @@ port = {{ mdb.settings.port }}
 dbpath = {{ mdb.db_path }}
 logpath = {{ mdb.log_path }}/mongodb.log
 
-{% if mdb.replica_set.name -%}
+{% if mdb.manage_replica_set -%}
 replSet = {{ mdb.replica_set.name }}
 {% endif %}
 
