@@ -44,6 +44,7 @@ mongodb_service:
     - enable: True
     - watch:
       - file: mongodb_configuration
+      - file: mongodb_init_configuration
 
 mongodb_configuration:
   file.managed:
@@ -53,3 +54,13 @@ mongodb_configuration:
     - mode: 644
     - source: salt://mongodb/files/mongodb.conf.jinja
     - template: jinja
+
+mongodb_init_configuration:
+  file.managed:
+    - name: /etc/init/mongod.conf
+    - user: root
+    - group: root
+    - mode: 644
+    - source: salt://mongodb/files/init_mongodb.conf.jinja
+    - template: jinja
+   
